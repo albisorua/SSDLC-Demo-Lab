@@ -9,17 +9,20 @@ A comprehensive repository showcasing various Secure Software Development Lifecy
 Demonstrates how to implement and enforce branch protection policies using [Allstar](https://github.com/ossf/allstar), an Open Source Security Foundation (OSSF) tool for setting and enforcing security policies.
 
 **Features**:
-- ✅ Automated branch protection enforcement
+- ✅ Automated branch protection enforcement via Allstar GitHub App
 - ✅ Required pull request reviews
 - ✅ Status check requirements
 - ✅ Code owner review enforcement
 - ✅ Protection against force pushes and branch deletion
-- ✅ GitHub Actions integration for continuous monitoring
+- ✅ Continuous monitoring through GitHub App integration
 
 **Key Files**:
 - `.allstar/allstar.yaml` - Main Allstar configuration
 - `.allstar/branch_protection.yaml` - Branch protection policy
-- `.github/workflows/demo-1-allstar-security.yml` - GitHub Actions workflow
+
+**Setup**:
+- Allstar GitHub App is installed and configured
+- Policies are enforced automatically through the GitHub App
 
 ## 🛠️ Getting Started
 
