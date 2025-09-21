@@ -41,7 +41,7 @@ jobs:
           /ko-app/allstar -once 2> $ARTIFACT_DIR/allstar.log | tee $ARTIFACT_DIR/allstar.out
           test -s $ARTIFACT_DIR/allstar.log && echo "==== Errors ====" && cat $ARTIFACT_DIR/allstar.log
       - name: Archive AllStar Results
-        uses: actions/upload-artifact@4.6.2
+        uses: actions/upload-artifact@v4
         with:
           name: allstar-scan
           path: ${{ env.ARTIFACT_DIR }}
@@ -52,7 +52,7 @@ jobs:
     environment: prod
     steps:
       - name: Download scan artifacts
-        uses: actions/download-artifact@4.3.0
+        uses: actions/download-artifact@4
         with:
           name: allstar-scan
       - name: Make artifacts directory
@@ -96,7 +96,7 @@ jobs:
           SCAN_RESULTS_REPO=$(cat $ARTIFACT_DIR/scan_results_by_repo.json)
           echo "$SCAN_RESULTS_REPO" | jq -r '.[] | "\n<details>\n<summary>\(.repository) - Pass: \(.summary.pass_count), Fail: \(.summary.fail_count)</summary>\n\n| Pass Count | Fail Count | Passed | Failed |\n| --- | --- | --- | --- |\n| \(.summary.pass_count) | \(.summary.fail_count) | \(.summary.passed | join(", ")) | \(.summary.failed | join(", ")) |\n\n</details>\n"' >> $GITHUB_STEP_SUMMARY
       - name: Archive AllStar Results
-        uses: actions/upload-artifact@4.6.2
+        uses: actions/upload-artifact@v4
         with:
           name: allstar-results
           path: ${{ env.ARTIFACT_DIR }}
