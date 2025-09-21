@@ -1,17 +1,2 @@
-# Allstar Configuration for Branch Protection Demo
-# This file configures Allstar to enforce security policies across the organization
-
 optConfig:
-  optOutStrategy: true  # All repositories are opted-in by default
-  optOutRepos: []       # No repositories are opted out
-
-# Action configuration
-action: issue           # Create GitHub issues for policy violations
-issueLabel: allstar-security
-issueFooter: |
-  ---
-  This issue was created by Allstar security policy enforcement.
-  Please address the security policy violation to resolve this issue.
-
-# Repository override settings
-repoOverride: true      # Allow repository-level overrides
+  optOutStrategy: false
