@@ -1,0 +1,51 @@
+name: Allstar Security Policy Enforcement
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run daily at 2 AM UTC to check for policy violations
+    - cron: '0 2 * * *'
+
+jobs:
+  allstar-check:
+    runs-on: ubuntu-latest
+    name: Allstar Security Check
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Run Allstar Security Check
+      uses: ossf/allstar-action@v1
+      with:
+        # Path to Allstar configuration
+        config-path: '.allstar'
+        
+    - name: Comment on PR (if applicable)
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Check if Allstar found any issues
+          const allstarLog = fs.readFileSync('allstar.log', 'utf8');
+          if (allstarLog.includes('Policy violation')) {
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ **Security Policy Violation Detected**\n\nAllstar has detected security policy violations. Please check the generated issues and address them before merging.'
+            });
+          } else {
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Security Policy Check Passed**\n\nAllstar security policies are satisfied.'
+            });
+          }

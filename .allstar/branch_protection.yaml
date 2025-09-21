@@ -1,0 +1,39 @@
+# Branch Protection Policy Configuration
+# This policy enforces GitHub branch protection settings
+
+optConfig:
+  optOutStrategy: true  # All repositories are opted-in by default
+
+# Action to take when policy is violated
+action: issue
+
+# Branch protection settings to enforce
+branches:
+  - name: main
+    requiredStatusChecks:
+      strict: true
+      contexts:
+        - "Allstar Security Check"
+        - "Code Quality Check"
+    enforceAdmins: true
+    requiredPullRequestReviews:
+      requiredApprovingReviewCount: 1
+      dismissStaleReviews: true
+      requireCodeOwnerReviews: true
+    restrictions: null
+    allowForcePushes: false
+    allowDeletions: false
+  - name: develop
+    requiredStatusChecks:
+      strict: true
+      contexts:
+        - "Allstar Security Check"
+        - "Code Quality Check"
+    enforceAdmins: true
+    requiredPullRequestReviews:
+      requiredApprovingReviewCount: 1
+      dismissStaleReviews: true
+      requireCodeOwnerReviews: true
+    restrictions: null
+    allowForcePushes: false
+    allowDeletions: false
