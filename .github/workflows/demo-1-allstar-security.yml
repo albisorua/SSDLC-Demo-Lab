@@ -18,7 +18,7 @@ jobs:
     container:
       # Specifying allstar by sha since tags are mutable.
       # YOU ARE RESPONSIBLE FOR UPDATING THIS FINGERPRINT FOR NEW ALLSTAR RELEASES!
-      image: ghcr.io/ossf/allstar@sha256:a088ecec168b87733e454590a4a3ec9d927bbb4bcec6fe4829f52758f0e272e6 # v4.4.6-gha
+      image: ghcr.io/ossf/allstar:v4.4 # v4.4.6-gha
       options: --user root
     environment: prod
     steps:
