@@ -14,10 +14,12 @@ Demonstrates how to implement and enforce branch protection policies using [Alls
 - ✅ Status check requirements
 - ✅ Code owner review enforcement
 - ✅ Protection against force pushes and branch deletion
+- ✅ GitHub Actions integration for continuous monitoring
 
 **Key Files**:
 - `.allstar/allstar.yaml` - Main Allstar configuration
 - `.allstar/branch_protection.yaml` - Branch protection policy
+- `.github/workflows/demo-1-allstar-security.yml` - GitHub Actions workflow
 
 ## 🛠️ Getting Started
 
